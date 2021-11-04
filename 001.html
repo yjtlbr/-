@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정글  시네마  영화 목록</title>
+    <style>
+        /*reset*/
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color:black;
+        }
+                /* http://meyerweb.com/eric/tools/css/reset/ 
+        v2.0 | 20110126
+        License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /*style*/
+
+        * {
+            font-family: 'Noto Sans KR';
+        }
+        
+        main{
+            width:1060px;
+            height:1170px;
+            background:#F2F2F2;
+            border:1px solid #BDBDBD;
+            border-radius:10px;
+            overflow:hidden;
+            margin:0 auto;
+            margin-top:91px;
+            margin-bottom: 135px;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-family: 'roboto';
+            font-size: 24px;
+            margin: 41px 0 37px 0;
+            text-align: center;
+        }
+
+        hr {
+            margin:auto;
+        }
+        nav{
+            width: 372px;
+            margin:0 auto;
+        }
+        nav ul {
+            overflow:hidden;
+            margin:28px 0;
+        }
+        nav ul li {float:left;}
+        nav ul li a {
+            font-size:16px;
+            color:#828282;
+            font-weight:500;
+            padding-left:60px;
+            font-family: 'roboto';
+        }
+        nav ul li a.font_900 {
+            font-weight: 900;
+            color: black;
+            padding-left:0;
+        }
+
+
+        main section {
+            
+            width:1003px;
+            height:962px;
+            background-color: white;
+            margin:0 auto;
+            border:1px solid #BDBDBD;
+            border-radius: 15px;
+            padding:26px 27px;
+            box-sizing: border-box;
+            overflow: hidden;
+
+        }
+
+        main section ul {
+            height:441px;
+            margin-bottom:24px;
+        }
+
+        li.movie_card {
+            width:220px;
+            height:441px;
+            float:left;
+            border:1px solid #BDBDBD;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            margin-left:22px;
+        }
+        li.movie_card:nth-child(1){
+            margin-left:0;
+        }
+
+        figure{
+            width: 180px;
+            height: 381px;
+            margin: 0 auto;
+        }
+        .poster_img{
+            margin-top:19px;
+            width:180px;
+            height:250px;
+            border-radius:10px;
+            overflow: hidden;
+            
+        }
+        .poster_img img {
+            width: 180px;
+            box-sizing: border-box;
+            vertical-align: middle;
+        }
+
+        h2 {
+            font-size:16px;
+            line-height: 40px;
+            font-weight: 900;
+        }
+
+        dl {
+            font-size:13px;
+            line-height: 25px;
+        }
+
+        dt{
+            color:#828282;
+            padding-right:5px;
+        }
+
+        .info_1 {overflow: hidden;}
+
+        .float_left {
+            float:left;
+        }
+
+        .float_right {
+            float:right;
+        }
+        .bnt {
+            height:41px;
+            background-color:#f2f2f2;
+            overflow: hidden;
+            
+        }
+
+        .bnt li {
+            width:50%;
+            text-align: center; 
+            border-top:1px solid #BDBDBD;
+            box-sizing: border-box;
+        }
+        .bnt li:nth-child(1) {
+            border-right: #BDBDBD solid 1px;
+        }
+        .bnt a {
+            line-height: 41px;
+            
+            font-size:14px;
+            font-weight: 500;
+        }
+        .bnt li img {
+            width:13.33px;
+            line-height: 41px;
+            padding-right:5px;
+        }
+        .red {
+            color: #EB5757;
+        }
+
+        /* footer */
+
+        footer {
+            width:100%;
+            height:213px;
+            background-color: #F2F2F2;
+        }
+
+        footer section {
+            width:1220px;
+            margin:auto;
+        }
+
+        footer ul {
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        footer ul:nth-child(1){ 
+            padding-top:53px;
+        }
+
+        footer hr {
+            margin-top:42px;
+        }
+
+        footer section ul:nth-child(3){
+            padding-top:36px; 
+        }
+        
+        footer ul li:nth-child(1) {
+            float: left;
+        }
+        footer ul li:nth-child(2) {
+            float: right;
+        }
+
+        footer ul li {
+            color:#4F4F4F
+        }
+
+        footer ul li span {
+            font-weight: 700;
+        }
+
+        footer ul li img {
+            width:24px;
+            padding-left:24px;
+        }
+        .roboto{
+            font-family: 'roboto';
+            font-weight: 700;
+            font-size: 22px;
+        }
+    
+    </style>
+</head>
+<body>
+ <main>   
+    <header>
+        <h1>정글  시네마  영화 목록</h1>
+        <hr size="3" color="#bdbdbd" width=650>
+        <nav>
+            <ul>
+                <li><a href="#" class="font_900">현재상영영화</a></li>
+                <li><a href="#">개봉에정영화</a></li>
+                <li><a href="#">박스오피스</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section>    
+        <ul>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="1.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="2.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>눈떠보니 코딩테스트 전...</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="3.jpg" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="4.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        
+        <!---두번째 줄-->
+        <ul>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="5.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="6.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="7.jpg" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="movie_card">
+                <figure>
+                    <div class="poster_img"><img src="8.png" alt="위니브 월드" ></div>
+                    <figcaption>
+                        <h2>위니브 월드 : 새로운 시대</h2>
+                        <div class="info_1">
+                            <dl class="float_left">
+                                <dt class="float_left">개요</dt>
+                                <dd class="float_left">판타지</dd>
+                            </dl>
+                            <dl class="float_right">
+                                <dt class="float_left">평점</dt>
+                                <dd class="float_left"><spand class="red">&#9733;
+                                </spand>9.05</dd>
+                            </dl>
+                        </div>
+                        <div class="info_2">
+                            <dl>
+                                <dt class="float_left">개봉</dt>
+                                <dd>2021.03.27</dd>
+                                <dt class="float_left">출연</dt>
+                                <dd>라이언 라이언 라이언</dd>
+                            </dl>
+                        </div>    
+                    </figcaption>
+
+                </figure>
+                <ul class="bnt">
+                    <li class="float_left">
+                        <a href="#">예매하기</a>
+                    </li>
+                    <li class="float_left">
+                        <a href="#"><img src="play_bnt.png" alt="">예고편</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <section>
+        <ul>
+            <li class="roboto">Jungle Cinema </li>
+            <li>
+                <a href="#"><img src="twitter.png" alt="트위터"></a>
+                <a href="#"><img src="instagram.png" alt="인스타그램"></a>
+                <a href="#"><img src="facebook.png" alt="페이스북"></a>
+            </li>
+        </ul>
+
+        <hr color="#C4C4C4">
+        
+        <ul>
+            <li><span>(주) 정글 시네마</span>  |  <span>대표</span> 라이언  |  <span>사업자 번호</span> 000-0000-0000  |  <sapn>광고 영화 및 비디오물 제작업</sapn>  |  <span>주소</span> 서울특별시</li>
+            <li>ⓒ The Jungle</li>
+        </ul>
+    </section>
+</footer>
+</body>
+</html>
