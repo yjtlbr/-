@@ -1,0 +1,14 @@
+body {
+    font-family: 'Noto Sans KR';
+}
+
+ir {
+    display: none;
+}
+
+#app {
+    width:360px;
+    height:545px;
+    border: 1px solid #e3e3e3;
+    margin:auto;
+}
